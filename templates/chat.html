@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/style.css">
+    <meta http-equiv="refresh" content="10"> 
+    <title>Chat Dos Pcr</title>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">CHAT MARECHAL</div>
+        
+        <div class="chat-box" id="chat-box">
+            {% for m in mensagens %}
+                <div class="msg {% if m.usuario == nome_usuario %}minha{% else %}outra{% endif %}">
+                    <small style="display: block; font-size: 11px; opacity: 0.6; margin-bottom: 2px;">{{ m.usuario }}</small>
+                    {% if m.imagem %}
+                        <img src="data:image/png;base64,{{ m.imagem }}" class="chat-img">
+                    {% endif %}
+                    {% if m.texto %}{{ m.texto }}{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="POST" class="input-area" enctype="multipart/form-data">
+            <label for="foto" class="btn-upload">🖼️</label>
+            <input type="file" id="foto" name="foto" accept="image/*" style="display:none;">
+            
+            <input type="text" name="mensagem" placeholder="Mensagem..." autocomplete="off">
+            <button type="submit">></button>
+        </form>
+    </div>
+
+    <script>
+        // Faz o chat sempre começar no final (mensagens recentes)
+        const box = document.getElementById('chat-box');
+        box.scrollTop = box.scrollHeight;
+    </script>
+</body>
+</html>flask
+flask-sqlalchemy
+gunicorn

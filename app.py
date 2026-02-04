@@ -24,7 +24,7 @@ def login():
     if request.method == 'POST':
         senha = request.form.get('senha')
         nome = request.form.get('nome')
-        if senha == "SALVEM US": 
+        if senha == "SENHA": 
             session['usuario'] = nome
             return redirect(url_for('chat'))
     return render_template('login.html')

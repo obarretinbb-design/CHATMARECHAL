@@ -2,19 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <link rel="stylesheet" href="/static/style.css">
     <meta http-equiv="refresh" content="10"> 
-    <title>Chat Dos Pcr</title>
+    <title>Snoop Chat</title>
 </head>
 <body>
     <div class="app-container">
-        <div class="header">CHAT MARECHAL</div>
+        <div class="header">SNOOP PRO 📸</div>
         
-        <div class="chat-box" id="chat-box">
+        <div class="chat-box" id="box">
             {% for m in mensagens %}
                 <div class="msg {% if m.usuario == nome_usuario %}minha{% else %}outra{% endif %}">
-                    <small style="display: block; font-size: 11px; opacity: 0.6; margin-bottom: 2px;">{{ m.usuario }}</small>
+                    <small style="display: block; font-size: 10px; opacity: 0.6; margin-bottom: 2px;">{{ m.usuario }}</small>
                     {% if m.imagem %}
                         <img src="data:image/png;base64,{{ m.imagem }}" class="chat-img">
                     {% endif %}
@@ -28,16 +28,18 @@
             <input type="file" id="foto" name="foto" accept="image/*" style="display:none;">
             
             <input type="text" name="mensagem" placeholder="Mensagem..." autocomplete="off">
-            <button type="submit">></button>
+            <button type="submit">➤</button>
         </form>
     </div>
 
     <script>
-        // Faz o chat sempre começar no final (mensagens recentes)
-        const box = document.getElementById('chat-box');
+        const box = document.getElementById('box');
         box.scrollTop = box.scrollHeight;
+        
+        // Ajuste extra para mobile: rola para baixo ao focar no input
+        document.querySelector('input[type="text"]').addEventListener('focus', () => {
+            setTimeout(() => { box.scrollTop = box.scrollHeight; }, 300);
+        });
     </script>
 </body>
-</html>flask
-flask-sqlalchemy
-gunicorn
+</html>

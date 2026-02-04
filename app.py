@@ -5,7 +5,7 @@ import base64
 import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.secret_key = "snoop_secret_key"
+app.secret_key = "snoop_mobile_pro_key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chat.db'
 db = SQLAlchemy(app)
 
@@ -24,7 +24,7 @@ def login():
     if request.method == 'POST':
         senha = request.form.get('senha')
         nome = request.form.get('nome')
-        if senha == "SENHA": # Sua senha
+        if senha == "SALVEM US": 
             session['usuario'] = nome
             return redirect(url_for('chat'))
     return render_template('login.html')
